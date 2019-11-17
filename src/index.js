@@ -36,12 +36,12 @@ io.on("connection", socket => {
 
     socket.join(user.room);
 
-    socket.emit("message", generateMessage("chatbot", "Welcome!"));
+    socket.emit("message", generateMessage("keiko", "Welcome!"));
     socket.broadcast
       .to(user.room)
       .emit(
         "message",
-        generateMessage("chatbot", `${user.username} has joined.`)
+        generateMessage("keiko", `${user.username} has joined.`)
       );
     io.to(user.room).emit("roomData", {
       room: user.room,
@@ -72,7 +72,7 @@ io.on("connection", socket => {
     if (user) {
       io.to(user.room).emit(
         "message",
-        generateMessage("chatbot", `${user.username} has left.`)
+        generateMessage("keiko", `${user.username} has left.`)
       );
       io.to(user.room).emit("roomData", {
         room: user.room,
